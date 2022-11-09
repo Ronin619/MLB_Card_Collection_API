@@ -1,1 +1,1 @@
-# MLB_Card_Collection_API
+# MLB Card Collection API
