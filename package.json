@@ -1,0 +1,32 @@
+{
+  "name": "mlb_card_collection_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./server/server.js",
+    "migrate": "npx knex migrate:latest --knexfile db/knexfile.js",
+    "seed":	"npx knex seed:run --knexfile db/knexfile.js",
+    "build": "npm install && npm run migrate && npm run seed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ronin619/MLB_Card_Collection_API.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ronin619/MLB_Card_Collection_API/issues"
+  },
+  "homepage": "https://github.com/Ronin619/MLB_Card_Collection_API#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "knex": "^2.3.0",
+    "path": "^0.12.7",
+    "pg": "^8.8.0",
+    "postgres": "^3.3.1"
+  }
+}
