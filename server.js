@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const knex = require("../db/knex");
+const knex = require("./db/knex");
 const cors = require("cors");
 const port = process.env.PORT || 3000;
 
