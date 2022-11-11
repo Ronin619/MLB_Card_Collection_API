@@ -15,7 +15,7 @@ app.use(express.urlencoded({extended: false}));
 
 app.get("/", async (req, res) => {
     try {
-        res.status(201).send("Hello World");
+        res.status(201).send("MLB Card Collector API");
     } catch (err) {
         console.error(err);
     }
