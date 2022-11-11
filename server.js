@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const db = require("./db/knex.js");
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 
 app.use(cors());
 app.use(express.json());
@@ -12,16 +12,6 @@ app.use(express.urlencoded({extended: false}));
 // CRUD OPERATIONS
 
 //GET
-
-// app.get("/pitchers", async (req, res) => {
-//     try { const result = await db("pitchers")
-//             .select("*")
-//             .from("pitchers");
-//             res.send(result); 
-//     } catch (err){
-//         console.error(err);
-//         }
-// })
 
 app.get("/batters", async (req, res) => {
     try { const result = await db("batters")
@@ -32,18 +22,6 @@ app.get("/batters", async (req, res) => {
         console.error(err);
     } 
 })
-
-// POST
-
-//     app.post('/addPitchers', async (req, res) => {
-//     try {
-//         const body = req.body
-//         const data = await db('pitchers').returning("*").insert(body)
-//         res.send(data);
-//     } catch(err) {
-//         console.error(err);
-//     }
-//  });
 
 app.post('/api/addBatters', async (req, res) => {
     try {
