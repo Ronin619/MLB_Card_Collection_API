@@ -2,7 +2,7 @@ require('dotenv').config({path: ".env.local"});
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const db = require("./db/knex.js");
+//const db = require("./db/knex.js");
 const port = process.env.PORT || 8080;
 
 app.use(cors());
@@ -22,7 +22,7 @@ app.get("/", async (req, res) => {
 })
 
 app.get("/batters", async (req, res) => {
-    try { const result = await db("batters")
+    try { const result = await knex("batters")
         .select("*")
         .from("batters");
         res.send(result); 
@@ -34,7 +34,7 @@ app.get("/batters", async (req, res) => {
 app.post('/api/addBatters', async (req, res) => {
     try {
         const body = req.body
-        const data = await db('batters').returning("*").insert(body)
+        const data = await knex('batters').returning("*").insert(body)
         res.send(data);
     } catch(err) {
         console.error(err);
@@ -63,7 +63,7 @@ app.patch('/api/batters/:id', async (req, res) => {
 app.delete('/api/batters/:last_name', async (req, res) => {
     try {
         const lastName = req.params.last_name
-        const data = await db('batters')
+        const data = await knex('batters')
             .returning("last_name")
             .where({"last_name": lastName})
             .del();
