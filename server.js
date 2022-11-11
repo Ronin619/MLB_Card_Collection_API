@@ -13,6 +13,14 @@ app.use(express.urlencoded({extended: false}));
 
 //GET
 
+app.get("/", async (req, res) => {
+    try {
+        res.status(201).send("Hello World");
+    } catch (err) {
+        console.error(err);
+    }
+})
+
 app.get("/batters", async (req, res) => {
     try { const result = await db("batters")
         .select("*")
