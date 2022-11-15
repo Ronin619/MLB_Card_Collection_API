@@ -63,7 +63,7 @@ app.delete('/api/batters/:id', async (req, res) => {
     try {
         const lastName = req.params.id
         const data = await db('batters')
-            .returning("last_name")
+            .returning("id")
             .where({"id": id})
             .del();
         res.status(201).send(data);
