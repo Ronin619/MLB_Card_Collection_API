@@ -61,12 +61,10 @@ app.patch('/api/batters/:id', async (req, res) => {
 
 app.delete('/api/batters/:id', async (req, res) => {
     try {
-        const lastName = req.params.id
-        const data = await db('batters')
-            .returning("id")
-            .where({"id": id})
-            .del();
-        res.status(201).send(data);
+        const id = req.params.id
+        await db('batters').where({id: id}).del()
+        const batter = await db('batters').select('*')
+        res.status(201).send(batter);
     } catch (err) {
         console.error(err);
         res.status(500);
