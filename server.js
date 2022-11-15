@@ -59,12 +59,12 @@ app.patch('/api/batters/:id', async (req, res) => {
 
 // DELETE
 
-app.delete('/api/batters/:last_name', async (req, res) => {
+app.delete('/api/batters/:id', async (req, res) => {
     try {
-        const lastName = req.params.last_name
+        const lastName = req.params.id
         const data = await db('batters')
             .returning("last_name")
-            .where({"last_name": lastName})
+            .where({"id": id})
             .del();
         res.status(201).send(data);
     } catch (err) {
