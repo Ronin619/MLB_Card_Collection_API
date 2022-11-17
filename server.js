@@ -42,14 +42,14 @@ app.post('/api/addBatters', async (req, res) => {
 
 // PATCH
 
-app.patch('/api/batters/:id', async (req, res) => {
+app.patch('/api/updateBatters/:id', async (req, res) => {
     try {
         const id = req.params.id
-        const { AVG, HR, RBI, OPS, image } = req.body
+        const { AVG, HR, RBI, OPS } = req.body
 
         const data = await db('batters')
         .returning("*")
-        .where({"id": id}).update({AVG, HR, RBI, OPS, image})
+        .where({"id": id}).update({AVG, HR, RBI, OPS})
         res.status(201).send(data);
     } catch (err) {
         console.error(err);
@@ -61,10 +61,8 @@ app.patch('/api/batters/:id', async (req, res) => {
 
 app.delete('/api/batters/:id', async (req, res) => {
     try {
-        const id = req.params.id
-        await db('batters').where({id: id}).del()
-        const batter = await db('batters').select('*')
-        res.status(201).send(batter);
+        db('batters').where({id: req.params.id}).del()
+        .then(function() {res => res.json({success: true})})
     } catch (err) {
         console.error(err);
         res.status(500);
