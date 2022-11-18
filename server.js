@@ -45,11 +45,11 @@ app.post('/api/addBatters', async (req, res) => {
 app.patch('/api/updateBatters/:id', async (req, res) => {
     try {
         const id = req.params.id
-        const { AVG, HR, RBI, OPS } = req.body
+        const { AVG, HR, RBI, OPS, image } = req.body
 
         const data = await db('batters')
         .returning("*")
-        .where({"id": id}).update({AVG, HR, RBI, OPS})
+        .where({"id": id}).update({AVG, HR, RBI, OPS, image})
         res.status(201).send(data);
     } catch (err) {
         console.error(err);
