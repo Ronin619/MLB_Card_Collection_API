@@ -12,14 +12,6 @@ app.use(express.json());
 
 //GET
 
-app.get("/", async (req, res) => {
-    try {
-        res.status(201).send("MLB Card Collector API");
-    } catch (err) {
-        console.error(err);
-    }
-})
-
 app.get("/batters", async (req, res) => {
     try { const result = await db("batters")
         .select("*")
@@ -69,7 +61,9 @@ app.delete('/api/batters/:id', async (req, res) => {
     }
 })
 
-
+app.get("/*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../frontend/build", "index.html"));
+    });
 
 app.listen(port, () => {
     console.log(`Server running on port: ${port}`);
